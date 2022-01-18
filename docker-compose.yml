@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+
+    web:
+        build:
+            context: ./
+            dockerfile: ./dockerConfig/web.docker
+        container_name: web
+        volumes:
+            - ./app:/var/www
+        ports:
+            - "8000:80"
+        links:
+            - app
+
+    app:
+        build:
+            context: ./
+            dockerfile: ./dockerConfig/app.docker
+        container_name: app
+        volumes:
+            - ./app:/var/www
