@@ -3,15 +3,18 @@
 namespace App\Services;
 
 use File;
+use App\Services\GreatCircleService;
+use App\Constant\Constant;
 
 class AffiliateService
 {
 
     private string $affiliate_file_path;
     public array $affiliates;
+    public array $within100KmAffiliates;
 
     public function __construct(){
-        $this->affiliate_file_path = storage_path() . "/json/affiliates.txt";
+        $this->affiliate_file_path = storage_path() . '/json/affiliates.txt';
     }
 
     public function getAffiliates(): self
@@ -28,15 +31,33 @@ class AffiliateService
 
     }
 
+    public function getwithin100KmAffiliates($km){
+        
+        foreach ($this->affiliates as $key => $value) {
+
+            $distanceFromDublinOffice = GreatCircleService::distance(
+                Constant::GAMBLING_DUBLINOFFICE_LAT,
+                Constant::GAMBLING_DUBLINOFFICE_LONG,
+                $value["latitude"],
+                $value["longitude"]
+            );
+
+            if ($distanceFromDublinOffice < $km) {
+                $within100KmAffiliates[] = $value;
+                echo json_encode($value).'===='.$distanceFromDublinOffice."<br>";
+            }
+
+        }
+
+        return $this;
+    }
+
     public function sort_ascending_affiliates_by_id(){
         
         usort($this->affiliates, function($a, $b) {
             return $a['affiliate_id'] <=> $b['affiliate_id'];
         });
 
-        foreach ($this->affiliates as $key => $value) {
-            echo json_encode($value)."<br>";
-        }
         return $this;
     }
         
