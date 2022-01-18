@@ -43,8 +43,8 @@ class AffiliateService
             );
 
             if ($distanceFromDublinOffice < $km) {
-                $within100KmAffiliates[] = $value;
-                echo json_encode($value).'===='.$distanceFromDublinOffice."<br>";
+                $value["distanceFromDublinOffice"] = $distanceFromDublinOffice;
+                $this->within100KmAffiliates[$key] = $value;
             }
 
         }
