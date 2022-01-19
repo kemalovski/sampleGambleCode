@@ -8,7 +8,7 @@ Installation with Docker
 3. composer update
 4. cd ..
 5. docker-compose up -d
-6. docker exec -it app bash
+6. **docker exec -it app bash**
 7. mv .env.example .env
 8. php artisan key:generate
 10. http://localhost:8000/affiliates
