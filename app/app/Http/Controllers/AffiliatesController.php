@@ -10,11 +10,10 @@ use App\Constant\Constant;
 class AffiliatesController extends Controller
 {
     public function index(){
-        
-        $affiliateService = new AffiliateService();
+        $affiliateService = new AffiliateService( storage_path() . '/txt/affiliates.txt' );
+
         $affiliates = $affiliateService
             ->getAffiliates()
-            ->getwithin100KmAffiliates(Constant::DISTANCE_FROM_DUBLIN_OFFICE)
             ->sort_ascending_affiliates_by_id();
 
         return view('affiliates', [ 'affiliates' => $affiliates->within100KmAffiliates ]);

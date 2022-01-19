@@ -33,7 +33,7 @@
                 <th>{{ $affiliate["name"] }}</th>
                 <th>{{ $affiliate["latitude"] }}</th>
                 <th>{{ $affiliate["longitude"] }}</th>
-                <th>{{ $affiliate["distanceFromDublinOffice"] }}</th>
+                <th>{{ $affiliate["distanceFromDublinOffice"] }} km</th>
             </tr>
         @endforeach
       </table>
