@@ -83,7 +83,7 @@ class AffiliateServiceTest extends TestCase
     }
 
 	/**
-     * within100KmAffiliates object has to be sorted ascending by affiliate_id
+     * we know  $affiliates is not within 10km from dublin office so this assert will not turn back us as an array
      * @return void
      */
     public function test_sort_ascending_affiliates_by_id(){

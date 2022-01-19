@@ -49,7 +49,7 @@ class AffiliateService
      */
     public function getwithin100KmAffiliates($affiliate, $km){
         
-        $distanceFromDublinOffice = GreatCircleService::distance(
+        $distanceFromDublinOffice = (new GreatCircleService())->distance(
             Constant::GAMBLING_DUBLINOFFICE_LAT,
             Constant::GAMBLING_DUBLINOFFICE_LONG,
             $affiliate["latitude"],

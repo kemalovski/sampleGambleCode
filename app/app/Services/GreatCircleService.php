@@ -19,7 +19,7 @@ Class GreatCircleService {
 
     // Takes two sets of geographic coordinates in decimal degrees and produces distance along the great circle line.
     // Optionally takes a fifth argument with one of the predefined units of measurements, or planet radius in custom units.
-    public static function distance($lat1, $lon1, $lat2, $lon2, $unit = self::KM) {
+    public function distance($lat1, $lon1, $lat2, $lon2, $unit = self::KM) : float {
         $r = self::validateRadius($unit);
         $lat1 = deg2rad($lat1);
         $lon1 = deg2rad($lon1);
